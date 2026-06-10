@@ -1,30 +1,481 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="css/style.css">
-      <link rel="shortcut icon" href="img/assets/icon.png" type="image/x-icon">
-      <title>Portfólio Ptech</title>
-  </head>
-  <body>
-      <nav>
-          <div class="logo">
-              <h1>Portfólio Ptech</h1>
-          </div>
-          <ul class="menu">
-              <li><a href="#">Início</a></li>
-              <li><a href="ptech.html">Ptech</a></li>
-              <li><a href="certificados.html">Certificados</a></li>
-          </ul>
-      </nav>
-      <div class="content">
-          <img src="img/assets/anime.gif" alt="Encontro com empresas ACP">
-          <div class="text-content">
-              <h1>Encontro com Empresas</h1>
-              <p>Portfólio ETEC Fernando Prestes</p>
-              <span>Leonardo Martins Brasilio</span>
-          </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="img/assets/icon.png" type="image/x-icon">
+  <title>Portfólio Ptech — Leonardo Brasilio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0A0A0F;
+      --bg2:       #12121A;
+      --border:    #1E1E2E;
+      --purple:    #7C3AED;
+      --cyan:      #06B6D4;
+      --white:     #F0F0F8;
+      --muted:     #6E6E88;
+      --font-disp: 'Space Mono', monospace;
+      --font-body: 'Space Grotesk', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: rgba(10,10,15,0.75);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: var(--font-disp);
+      font-size: .85rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .logo span { color: var(--cyan); }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+    .menu a {
+      font-family: var(--font-disp);
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+      position: relative;
+    }
+    .menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--cyan);
+      transition: width .25s;
+    }
+    .menu a:hover { color: var(--white); }
+    .menu a:hover::after { width: 100%; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 3rem;
+      gap: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ambient glow */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10%; left: -5%;
+      width: 60vw; height: 60vw;
+      background: radial-gradient(circle, rgba(124,58,237,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -10%; right: -5%;
+      width: 50vw; height: 50vw;
+      background: radial-gradient(circle, rgba(6,182,212,.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-text { position: relative; z-index: 2; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      font-family: var(--font-disp);
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1.75rem;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 2rem; height: 1px;
+      background: var(--cyan);
+    }
+
+    h1.headline {
+      font-family: var(--font-disp);
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -.02em;
+      margin-bottom: 1.75rem;
+    }
+
+    h1.headline .name {
+      color: var(--white);
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 38ch;
+      margin-bottom: 2.75rem;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .7rem 1.6rem;
+      border-radius: 4px;
+      font-family: var(--font-disp);
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+    .btn:active { transform: scale(.97); }
+
+    .btn-primary {
+      background: var(--purple);
+      color: var(--white);
+      border: 1px solid var(--purple);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 24px rgba(124,58,237,.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover {
+      border-color: var(--muted);
+      transform: translateY(-2px);
+    }
+
+    /* ── HERO VISUAL ── */
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-frame {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+    }
+
+    /* fake browser bar */
+    .browser-bar {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .7rem 1rem;
+      background: #0F0F18;
+      border-bottom: 1px solid var(--border);
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #FF5F57; }
+    .dot-y { background: #FFBD2E; }
+    .dot-g { background: #28C840; }
+
+    .card-frame img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      filter: brightness(.9);
+    }
+
+    /* glow ring around card */
+    .card-frame::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--purple), var(--cyan));
+      z-index: -1;
+      opacity: .4;
+    }
+
+    /* ── STATS BAR ── */
+    .stats {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid var(--border);
+      margin-top: 5rem;
+    }
+
+    .stat {
+      flex: 1;
+      padding: 2rem 3rem;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+
+    .stat-value {
+      font-family: var(--font-disp);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .35rem;
+    }
+    .stat-value span { color: var(--cyan); }
+
+    .stat-label {
+      font-size: .82rem;
+      color: var(--muted);
+      letter-spacing: .05em;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: var(--font-disp);
+      font-size: .7rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 3rem 3rem 0;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── CARDS GRID ── */
+    .cards-section { padding: 2.5rem 3rem 5rem; }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: border-color .2s, transform .2s;
+      cursor: default;
+    }
+    .card:hover {
+      border-color: var(--purple);
+      transform: translateY(-4px);
+    }
+
+    .card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-title {
+      font-family: var(--font-disp);
+      font-size: .9rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      margin-bottom: .6rem;
+    }
+
+    .card-desc {
+      font-size: .875rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-family: var(--font-disp);
+      font-size: .7rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-tag {
+      font-size: .75rem;
+      color: var(--border);
+    }
+    .footer-tag span { color: var(--purple); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .menu { gap: 1.5rem; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 6rem 1.5rem 3rem;
+        min-height: auto;
+        padding-top: 8rem;
+      }
+      .hero-visual { display: none; }
+
+      .stats { flex-direction: column; }
+      .stat { border-right: none; border-bottom: 1px solid var(--border); padding: 1.5rem; }
+
+      .cards-grid { grid-template-columns: 1fr; }
+      .section-label, .cards-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      footer { flex-direction: column; gap: .75rem; text-align: center; padding: 1.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cursor { animation: none; opacity: 1; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo"><span>//</span> Ptech</div>
+    <ul class="menu">
+      <li><a href="#">Início</a></li>
+      <li><a href="ptech.html">Ptech</a></li>
+      <li><a href="certificados.html">Certificados</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">ETEC Fernando Prestes</p>
+
+      <h1 class="headline">
+        Encontro com<br>
+        Empresas de<br>
+        Tecnologia.
+      </h1>
+
+      <p class="subtitle">
+        Portfólio do programa Ptech — onde estudantes se conectam ao mercado de tecnologia. Documentando experiências, aprendizados e certificados dessa jornada.
+      </p>
+
+      <div class="cta-group">
+        <a href="ptech.html" class="btn btn-primary">Ver Ptech</a>
+        <a href="certificados.html" class="btn btn-ghost">Certificados</a>
       </div>
-  </body>
+    </div>
+
+    <div class="hero-visual">
+      <div class="card-frame">
+        <div class="browser-bar">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+        </div>
+        <img src="img/assets/anime.gif" alt="Encontro com Empresas ACP">
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-value">01<span>+</span></div>
+      <div class="stat-label">Encontro com Empresas</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value"><span>#</span>Ptech</div>
+      <div class="stat-label">Programa IBM</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">100<span>%</span></div>
+      <div class="stat-label">Dedicação</div>
+    </div>
+  </div>
+
+  <!-- DESTAQUES -->
+  <p class="section-label">Destaques</p>
+
+  <section class="cards-section">
+    <div class="cards-grid">
+
+      <div class="card">
+        <div class="card-icon">🏢</div>
+        <h3 class="card-title">Encontro com Empresas</h3>
+        <p class="card-desc">Experiências e aprendizados do encontro ACP, conectando estudantes a profissionais do mercado.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📜</div>
+        <h3 class="card-title">Certificados</h3>
+        <p class="card-desc">Conquistas e certificações obtidas ao longo do programa Ptech e da ETEC Fernando Prestes.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <h3 class="card-title">Projeto Ptech</h3>
+        <p class="card-desc">Conexão direta com empresas de tecnologia — visitas, palestras e imersões no mercado tech.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p class="footer-copy">Leonardo Martins Brasilio &mdash; 2025</p>
+    <p class="footer-tag">built with <span>♥</span> @ ETEC Fernando Prestes</p>
+  </footer>
+
+</body>
 </html>
